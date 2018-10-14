@@ -1,0 +1,18 @@
+<div class="container">
+
+  <div *ngFor="let value of cardItems">
+    <div class="card">
+      <div class="row">
+        <div class="col-12">
+          <img src={{value.author.image}} class="image-icon">
+          <small>{{value.author.username}}</small>
+          <small>{{value.createdAt}}</small>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{value.title}}</h5>
+          <p class="card-text">{{value.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
