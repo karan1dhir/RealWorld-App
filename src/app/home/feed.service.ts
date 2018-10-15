@@ -6,16 +6,17 @@ import { Observable, Subject } from "rxjs";
   providedIn: "root"
 })
 export class FeedService {
-  tagsInput$: Observable<any>;
+
   private tagsInputSubject = new Subject<any>();
   urlFeeds: string =
     "https://conduit.productionready.io/api/articles?limit=10&offset=0";
   urlTags: string = "https://conduit.productionready.io/api/tags";
   urlTagsDetails: string =
     "https://conduit.productionready.io/api/articles?limit=10&offset=0&tag=";
+  
 
   constructor(private http: HttpClient) {
-    this.tagsInput$ = this.tagsInputSubject.asObservable();
+
   }
   makeFeedsRequest() {
     return this.http.get(this.urlFeeds);
@@ -24,9 +25,7 @@ export class FeedService {
     return this.http.get(this.urlTags);
   }
   makeTagDetailsRequest(data) {
-    this.http.get(this.urlTagsDetails + data).subscribe(data => {
-      console.log(data);
-    });
+    return this.http.get(this.urlTagsDetails + data);
   }
   getTagDetails(data) {
     this.makeTagDetailsRequest(data);

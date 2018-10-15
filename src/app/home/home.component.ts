@@ -11,6 +11,7 @@ import { connectableObservableDescriptor } from "rxjs/internal/observable/Connec
 export class HomeComponent implements OnInit {
   itemFeeds: Array<Items>;
   itemTags: Array<string>;
+
   constructor(private getFeeds: FeedService) {}
   ngOnInit() {
     this.getAllFeeds();

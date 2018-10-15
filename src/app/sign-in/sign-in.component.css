@@ -1,0 +1,8 @@
+.btn {
+  background-color: #5CB85C;
+  border-color: #5CB85C;
+}
+
+.btn:active {
+  background-color: #5CB85C;
+}
