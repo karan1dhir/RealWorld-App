@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { SignupService } from "./signup.service";
+import { User } from "../models/user";
 
 @Component({
   selector: "app-signup",
@@ -7,10 +9,29 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./signup.component.css"]
 })
 export class SignupComponent implements OnInit {
-  constructor() {}
+  userObj: User;
+  constructor(private signupService: SignupService) {}
 
   ngOnInit() {}
-  onSignUpFormSubmit(signupform) {
-    console.log(signupform.value);
+  onSignUpFormSubmit(signupform: NgForm) {
+    let username = signupform.value.username;
+    let email = signupform.value.email;
+    let password = signupform.value.password;
+
+    const obj = {
+      user: {
+        username: username,
+        email: email,
+        password: password
+      }
+    };
+    this.signupService.makeSignUpRequest(obj).subscribe(
+      (data: User) => {
+         console.log(data)
+      },
+      error => {
+        console.log(JSON.stringify(error));
+      }
+    );
   }
 }

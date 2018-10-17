@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FeedService } from "./feed.service";
-import { Article, Items, Tags } from "../article";
+import { Article, Items, Tags } from "../models/article";
 
 @Component({
   selector: "app-home",
@@ -29,16 +29,12 @@ export class HomeComponent implements OnInit {
   }
   getAllTags() {
     this.getFeeds.makeTagsRequest().subscribe((data: Tags) => {
-      console.log(data.tags);
       this.itemTags = data.tags;
     });
   }
   clickonList(e) {
-    console.log(e);
     let offset = e * +this.limit;
-    console.log(offset);
     this.getFeeds.makeFeedsRequestonPages(offset).subscribe((data: Article) => {
-      console.log(data);
       this.itemFeeds = data.articles;
     });
   }
