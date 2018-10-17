@@ -1,21 +1,24 @@
 <div class="container col-5" style="margin-top:40px">
-  <form>
+  <form #signupform="ngForm" (ngSubmit)="onSignUpFormSubmit(signupform)">
     <div class="form-heading" style="text-align:center">
       <h1>Sign Up</h1>
       <h6 style="color:#5CB85C">Have an account</h6>
     </div>
     <div class="form-group">
       <label for="exampleInputUsername">Username</label>
-      <input type="text" class="form-control" id="exampleInputUsername" placeholder="Enter Username">
+      <input type="text" class="form-control" id="exampleInputUsername" name="username" placeholder="Enter Username"
+        ngModel required>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp"
+        placeholder="Enter email" ngModel required>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password"
+        ngModel required>
     </div>
-    <button type="button" class="btn btn-success float-right">Sign Up</button>
+    <button type="submit" class="btn btn-success float-right">Sign Up</button>
   </form>
 </div>

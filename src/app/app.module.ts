@@ -7,10 +7,12 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { SignupComponent } from "./signup/signup.component";
 import { HomeComponent } from "./home/home.component";
 import { HttpClientModule } from "@angular/common/http";
-import { CardComponent } from './card/card.component';
-import { TagsComponent } from './tags/tags.component';
-import { TagfeedsComponent } from './tagfeeds/tagfeeds.component';
-import { FooterComponent } from './footer/footer.component';
+import { CardComponent } from "./card/card.component";
+import { TagsComponent } from "./tags/tags.component";
+import { TagfeedsComponent } from "./tagfeeds/tagfeeds.component";
+import { FooterComponent } from "./footer/footer.component";
+import { ListComponent } from "./list/list.component";
+import { FormsModule } from "@angular/forms";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -29,9 +31,15 @@ const routes: Routes = [
     CardComponent,
     TagsComponent,
     TagfeedsComponent,
-    FooterComponent
+    FooterComponent,
+    ListComponent
   ],
-  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 export interface Article {
   articles: Array<Items>;
-  articlesCount: Number;
+  articlesCount?: Number;
 }
 export interface Items {
   author: {
