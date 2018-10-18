@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { SignupService } from "./signup.service";
-import { User } from "../models/user";
+import { Users, UserDetails } from "../models/users";
+import { Router } from "@angular/router";
+import { JwtService } from "../services/jwt.service";
 
 @Component({
   selector: "app-signup",
@@ -9,8 +11,12 @@ import { User } from "../models/user";
   styleUrls: ["./signup.component.css"]
 })
 export class SignupComponent implements OnInit {
-  userObj: User;
-  constructor(private signupService: SignupService) {}
+  userDetails: UserDetails;
+  constructor(
+    private signupService: SignupService,
+    private router: Router,
+    private jwtService: JwtService
+  ) {}
 
   ngOnInit() {}
   onSignUpFormSubmit(signupform: NgForm) {
@@ -26,8 +32,11 @@ export class SignupComponent implements OnInit {
       }
     };
     this.signupService.makeSignUpRequest(obj).subscribe(
-      (data: User) => {
-         console.log(data)
+      (data: Users) => {
+        this.userDetails = data.user;
+        console.log(this.userDetails);
+        this.jwtService.saveToken(this.userDetails.token);
+        this.router.navigateByUrl("/");
       },
       error => {
         console.log(JSON.stringify(error));
