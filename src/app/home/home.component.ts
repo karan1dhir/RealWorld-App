@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FeedService } from "./feed.service";
 import { Article, Items, Tags } from "../models/article";
+import { JwtService } from "../services/jwt.service";
 
 @Component({
   selector: "app-home",
@@ -12,10 +13,15 @@ export class HomeComponent implements OnInit {
   itemTags: Array<string>;
   itemPages: Array<number>;
   limit: Number = 10;
-  constructor(private getFeeds: FeedService) {}
+
+  constructor(private getFeeds: FeedService, private jwtService: JwtService) {}
   ngOnInit() {
     this.getAllFeeds();
     this.getAllTags();
+    if (this.jwtService.getToken()) {
+      console.log("HELLL0000->>>>>>>");
+      this.checkUser();
+    }
   }
   getAllFeeds(): void {
     this.getFeeds.makeFeedsRequest().subscribe((data: Article) => {
@@ -37,5 +43,16 @@ export class HomeComponent implements OnInit {
     this.getFeeds.makeFeedsRequestonPages(offset).subscribe((data: Article) => {
       this.itemFeeds = data.articles;
     });
+  }
+  checkUser() {
+    console.log("Hello");
+    this.getFeeds.checkCurrentUserRequest().subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

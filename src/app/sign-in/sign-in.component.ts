@@ -1,15 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { SigninService } from "./signin.service";
+import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
+import { JwtService } from "../services/jwt.service";
+import { Users, UserDetails } from "../models/users";
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  selector: "app-sign-in",
+  templateUrl: "./sign-in.component.html",
+  styleUrls: ["./sign-in.component.css"]
 })
 export class SignInComponent implements OnInit {
+  userDetails: UserDetails;
+  constructor(
+    private signInService: SigninService,
+    private router: Router,
+    private jwtService: JwtService
+  ) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  onSignUpFormSubmit(signinForm: NgForm) {
+    let email = signinForm.value.email;
+    let password = signinForm.value.password;
+    const obj = {
+      user: {
+        email: email,
+        password: password
+      }
+    };
+    this.signInService.makeSignInRequest(obj).subscribe(
+      (data: Users) => {
+        console.log(data);
+        this.userDetails = data.user;
+        this.jwtService.saveToken(this.userDetails.token);
+        this.router.navigateByUrl("/");
+      },
+      error => {
+        console.log(JSON.stringify(error));
+      }
+    );
   }
-
 }
