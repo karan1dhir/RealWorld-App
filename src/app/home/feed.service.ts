@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AppUrls } from "./../Constants";
+import { JwtService } from "../services/jwt.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class FeedService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private jwtService: JwtService) {}
   makeFeedsRequest() {
     return this.http.get(AppUrls.urlFeeds);
   }
@@ -23,6 +24,11 @@ export class FeedService {
     this.makeTagDetailsRequest(data);
   }
   checkCurrentUserRequest() {
-    return this.http.get(AppUrls.urlGetUser);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: "Token" + " " + this.jwtService.getToken()
+      })
+    };
+    return this.http.get(AppUrls.urlGetUser, httpOptions);
   }
 }
