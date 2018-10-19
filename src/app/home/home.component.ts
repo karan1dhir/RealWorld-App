@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   itemFeeds: Array<Items>;
   itemTags: Array<string>;
   itemPages: Array<number>;
+  itemTag: string;
   limit: Number = 10;
 
   constructor(private getFeeds: FeedService, private jwtService: JwtService) {}
@@ -19,33 +20,50 @@ export class HomeComponent implements OnInit {
     this.getAllFeeds();
     this.getAllTags();
     if (this.jwtService.getToken()) {
-      console.log("HELLL0000->>>>>>>");
       this.checkUser();
     }
   }
   getAllFeeds(): void {
-    this.getFeeds.makeFeedsRequest().subscribe((data: Article) => {
-      console.log(data.articles);
-      this.itemFeeds = data.articles;
-      this.itemPages = Array.from(
-        new Array(Math.ceil(+data.articlesCount / +this.limit)),
-        (val, index) => index + 1
-      );
-    });
+    this.getFeeds.makeFeedsRequest().subscribe(
+      (data: Article) => {
+        console.log(data.articles);
+        this.itemFeeds = data.articles;
+        this.itemPages = Array.from(
+          new Array(Math.ceil(+data.articlesCount / +this.limit)),
+          (val, index) => index + 1
+        );
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   getAllTags() {
-    this.getFeeds.makeTagsRequest().subscribe((data: Tags) => {
-      this.itemTags = data.tags;
-    });
+    this.getFeeds.makeTagsRequest().subscribe(
+      (data: Tags) => {
+        this.itemTags = data.tags;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   clickonList(e) {
     let offset = e * +this.limit;
-    this.getFeeds.makeFeedsRequestonPages(offset).subscribe((data: Article) => {
-      this.itemFeeds = data.articles;
-    });
+    this.getFeeds.makeFeedsRequestonPages(offset).subscribe(
+      (data: Article) => {
+        this.itemFeeds = data.articles;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  clickonTag(e) {
+    this.itemTag = e.value;
+    this.itemFeeds =  e.itemFeedsList
   }
   checkUser() {
-    console.log("Hello");
     this.getFeeds.checkCurrentUserRequest().subscribe(
       data => {
         console.log(data);

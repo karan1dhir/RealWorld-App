@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { Items } from "../models/article";
+import { Component, OnInit, Input } from "@angular/core";
 import { FeedService } from "../home/feed.service";
 @Component({
   selector: "app-tagfeeds",
@@ -7,7 +6,8 @@ import { FeedService } from "../home/feed.service";
   styleUrls: ["./tagfeeds.component.css"]
 })
 export class TagfeedsComponent implements OnInit {
-  ItemTagFeeds: Array<Items>;
+  @Input()
+  tagItem;
   constructor(private feedService: FeedService) {}
 
   ngOnInit() {}

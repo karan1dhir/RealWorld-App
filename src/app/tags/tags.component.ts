@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { FeedService } from "../home/feed.service";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { TagdetailsService } from "./tagdetails.service";
+import { Items, Article } from "../models/article";
 @Component({
   selector: "app-tags",
   templateUrl: "./tags.component.html",
@@ -8,10 +9,21 @@ import { FeedService } from "../home/feed.service";
 export class TagsComponent implements OnInit {
   @Input()
   cardItems;
-  constructor(private feedService: FeedService) {}
+  itemFeeds: Array<Items>;
+  @Output()
+  tagValueclick = new EventEmitter<{value:string,itemFeedsList:Array<Items>}>();
+  constructor(private tagdetailsService: TagdetailsService) {}
 
   ngOnInit() {}
-  popularTags(name) {
-    this.feedService.getTagDetails(name);
+  popularTags(tag) {
+    this.tagdetailsService.makeTagDetailsRequest(tag).subscribe(
+      (data: Article) => {
+        this.itemFeeds = data.articles;
+        this.tagValueclick.emit({value : tag, itemFeedsList : this.itemFeeds });
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

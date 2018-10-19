@@ -19,13 +19,13 @@
           <a class="nav-link">Global Feed</a>
         </li>
         <li class="nav-item">
-          <app-tagfeeds></app-tagfeeds>
+          <app-tagfeeds [tagItem]=itemTag></app-tagfeeds>
         </li>
       </ul>
       <app-card [cardItems]=itemFeeds></app-card>
     </div>
     <div class="col-6">
-      <app-tags [cardItems]=itemTags></app-tags>
+      <app-tags [cardItems]=itemTags (tagValueclick)=clickonTag($event)></app-tags>
     </div>
   </div>
   <app-list [articleCount]=itemPages (listNumberclick)=clickonList($event)></app-list>

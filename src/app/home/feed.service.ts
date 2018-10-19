@@ -17,12 +17,6 @@ export class FeedService {
   makeTagsRequest() {
     return this.http.get(AppUrls.urlTags);
   }
-  makeTagDetailsRequest(data) {
-    return this.http.get(AppUrls.urlTagsDetails + data);
-  }
-  getTagDetails(data) {
-    this.makeTagDetailsRequest(data);
-  }
   checkCurrentUserRequest() {
     const httpOptions = {
       headers: new HttpHeaders({
