@@ -7,9 +7,10 @@ import { Items, Article } from "../models/article";
   styleUrls: ["./tags.component.css"]
 })
 export class TagsComponent implements OnInit {
+ 
   @Input()
   cardItems;
-  itemFeeds: Array<Items>;
+  itemFeeds: Array<Items>;  
   @Output()
   tagValueclick = new EventEmitter<{value:string,itemFeedsList:Array<Items>}>();
   constructor(private tagdetailsService: TagdetailsService) {}
@@ -19,7 +20,7 @@ export class TagsComponent implements OnInit {
     this.tagdetailsService.makeTagDetailsRequest(tag).subscribe(
       (data: Article) => {
         this.itemFeeds = data.articles;
-        this.tagValueclick.emit({value : tag, itemFeedsList : this.itemFeeds });
+        this.tagValueclick.emit({value : tag, itemFeedsList : this.itemFeeds});
       },
       error => {
         console.log(error);

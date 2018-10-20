@@ -1,23 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" style="color:#5CB85C;">conduit</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav nav pull-xs-right" style="display:inherit">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="login" style="cursor:pointer">Sign in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="register" style="cursor:pointer">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" style="cursor:pointer" (click)=logout()>Logout</a>
-      </li>
-    </ul>
+<nav class="navbar  navbar-expand-sm navbar-light bg-light justify-content-between">
+  <div class="col-4 nav-head">
+    <a class="navbar-brand" style="color:#5CB85C;">conduit</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse flex-grow-0 col-4" id="navbarSupportedContent">
+    <div *ngIf="checkSignIn(); else loggedOut">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="editor" style="cursor:pointer">New Article</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="settings" style="cursor:pointer">Settings</a>
+        </li>
+      </ul>
+    </div>
+    <ng-template #loggedOut>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login" style="cursor:pointer">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="register" style="cursor:pointer">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor:pointer" (click)=logout()>Logout</a>
+        </li>
+      </ul>
+    </ng-template>
   </div>
 </nav>

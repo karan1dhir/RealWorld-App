@@ -13,12 +13,16 @@ import { TagfeedsComponent } from "./tagfeeds/tagfeeds.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ListComponent } from "./list/list.component";
 import { FormsModule } from "@angular/forms";
+import { SettingsComponent } from "./settings/settings.component";
+import { NewarticleComponent } from "./newarticle/newarticle.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
   { path: "login", component: SignInComponent },
-  { path: "register", component: SignupComponent }
+  { path: "register", component: SignupComponent },
+  { path: "editor", component: NewarticleComponent },
+  { path: "settings", component: SettingsComponent }
 ];
 
 @NgModule({
@@ -32,7 +36,9 @@ const routes: Routes = [
     TagsComponent,
     TagfeedsComponent,
     FooterComponent,
-    ListComponent
+    ListComponent,
+    SettingsComponent,
+    NewarticleComponent
   ],
   imports: [
     BrowserModule,

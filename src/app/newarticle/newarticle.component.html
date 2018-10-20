@@ -1,0 +1,18 @@
+<div class="container col-7" style="margin-top:40px">
+  <form #signInform="ngForm" (ngSubmit)=onSignUpFormSubmit(signInform)>
+    <div class="form-group">
+      <input type="text" style="padding:25px;" class="form-control" aria-describedby="articleHelp" placeholder="Enter Article"
+        name="article" ngModel>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="What's this article About" name="article-About" ngModel>
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" rows="6" placeholder="Write your article (in markdown)" name="article-content"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Enter Tags" name="article-Tags" ngModel>
+    </div>
+    <button type="submit" class="btn btn-success float-right" style="padding:15px">Publish Article</button>
+  </form>
+</div>

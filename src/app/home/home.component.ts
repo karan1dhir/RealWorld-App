@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
   }
   clickonTag(e) {
     this.itemTag = e.value;
-    this.itemFeeds =  e.itemFeedsList
+    this.itemFeeds = e.itemFeedsList;
   }
   checkUser() {
     this.getFeeds.checkCurrentUserRequest().subscribe(
