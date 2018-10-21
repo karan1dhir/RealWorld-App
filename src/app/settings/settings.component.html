@@ -1,3 +1,29 @@
-<p>
-  settings works!
-</p>
+<div class="container col-4" style="margin-top:40px">
+  <form #signInform="ngForm" (ngSubmit)=onSignUpFormSubmit(signInform)>
+    <h2 style="text-align: center">Your Settings</h2>
+    <div class="form-group">
+      <input type="text" class="form-control" aria-describedby="articleHelp" placeholder="URL of profile pic" name="article"
+        ngModel>
+    </div>
+    <div class="form-group">
+      <input type="text" style="padding:25px;" class="form-control" placeholder="Username" name="settings-username"
+        ngModel>
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" rows="6" placeholder="Short bio about you" name="settings-bio"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="email" style="padding:25px" class="form-control" placeholder="Email" name="settings-email" ngModel>
+    </div>
+    <div class="form-group">
+      <input type="password" style="padding:25px" class="form-control" placeholder="New Password" name="newpassword-email"
+        ngModel>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success float-right" style="padding:15px">Update Settings</button>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-outline-danger" (click)=logout()>or click here to logout</button>
+    </div>
+  </form>
+</div>
