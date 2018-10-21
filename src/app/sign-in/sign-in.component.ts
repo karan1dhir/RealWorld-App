@@ -4,6 +4,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { JwtService } from "../services/jwt.service";
 import { Users, UserDetails } from "../models/users";
+import { MessageService } from "../services/message.service";
 
 @Component({
   selector: "app-sign-in",
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private signInService: SigninService,
     private router: Router,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {}
@@ -32,6 +34,7 @@ export class SignInComponent implements OnInit {
       (data: Users) => {
         console.log(data);
         this.userDetails = data.user;
+        this.messageService.sendData(this.userDetails);
         this.jwtService.saveToken(this.userDetails.token);
         this.router.navigateByUrl("/");
       },
@@ -39,5 +42,8 @@ export class SignInComponent implements OnInit {
         console.log(JSON.stringify(error));
       }
     );
+  }
+  clearMessage(): void {
+    this.messageService.clearData();
   }
 }

@@ -6,5 +6,7 @@ export const AppUrls = {
     urlFeedsPages:"https://conduit.productionready.io/api/articles?limit=10&offset=",
     urlSignUp:"https://conduit.productionready.io/api/users",
     urlSignIn:"https://conduit.productionready.io/api/users/login",
-    urlGetUser:"https://conduit.productionready.io/api/user"
+    urlGetUser:"https://conduit.productionready.io/api/user",
+    urlPostArticle:"https://conduit.productionready.io/api/articles",
+    urlUpdateUser:"https://conduit.productionready.io/api/user"
 };
