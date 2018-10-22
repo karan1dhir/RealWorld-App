@@ -1,17 +1,21 @@
-<div class="container">
+<div class="container-fluid">
   <div *ngFor="let value of cardItems">
     <div class="card">
       <div class="row">
         <div class="col-12">
           <img src={{value.author.image}} class="image-icon">
-          <small>{{value.author.username}}</small>
-          <small>{{value.createdAt}}</small>
+          <div class="info">     
+          <a class="card-name author" style="cursor:pointer">{{value.author.username}}</a><br/>
+          <small class="card-date date">{{value.createdAt | date}}</small>
+        </div>
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{value.title}}</h5>
+          <h5 class="card-title" style="cursor:pointer" [routerLink] = "['/articles',value.slug]">{{value.title}}</h5>
           <p class="card-text">{{value.description}}</p>
         </div>
       </div>
     </div>
+    <hr style="height:2px;color:#333;">
   </div>
 </div>
+

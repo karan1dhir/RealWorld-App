@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ProfiledetailsService } from "./profiledetails.service";
 import { Users } from "../models/users";
 import {Article,Items} from '../models/article'
+import { Router } from "@angular/router";
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -13,7 +14,7 @@ export class ProfileComponent implements OnInit {
   imgsrc: string;
   bio: string;
 
-  constructor(private profiledetails: ProfiledetailsService) {}
+  constructor(private profiledetails: ProfiledetailsService,private router:Router) {}
 
   ngOnInit() {
     this.currentUserDetails();
@@ -32,5 +33,8 @@ export class ProfileComponent implements OnInit {
        this.userFeeds = data.articles;
        console.log(this.userFeeds);
      })
+  }
+  profileSettings(){
+   this.router.navigateByUrl("settings")
   }
 }

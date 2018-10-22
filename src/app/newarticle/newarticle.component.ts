@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { PostarticleService } from "./postarticle.service";
 import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-newarticle",
   templateUrl: "./newarticle.component.html",
   styleUrls: ["./newarticle.component.css"]
 })
 export class NewarticleComponent implements OnInit {
-  constructor(private postarticleservice: PostarticleService) {}
+  constructor(private postarticleservice: PostarticleService,private router:Router) {}
 
   ngOnInit() {}
   submitArticle(form: NgForm) {
@@ -22,6 +23,7 @@ export class NewarticleComponent implements OnInit {
     this.postarticleservice.postArticleRequest(obj).subscribe(
       data => {
         console.log(data);
+        this.router.navigateByUrl("home")
       },
       error => {
         console.log(error);
