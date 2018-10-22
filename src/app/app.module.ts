@@ -15,6 +15,7 @@ import { ListComponent } from "./list/list.component";
 import { FormsModule } from "@angular/forms";
 import { SettingsComponent } from "./settings/settings.component";
 import { NewarticleComponent } from "./newarticle/newarticle.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: "login", component: SignInComponent },
   { path: "register", component: SignupComponent },
   { path: "editor", component: NewarticleComponent },
-  { path: "settings", component: SettingsComponent }
+  { path: "settings", component: SettingsComponent },
+  { path: "profile", component: ProfileComponent }
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ const routes: Routes = [
     FooterComponent,
     ListComponent,
     SettingsComponent,
-    NewarticleComponent
+    NewarticleComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

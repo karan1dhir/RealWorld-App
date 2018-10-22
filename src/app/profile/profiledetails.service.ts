@@ -5,15 +5,14 @@ import { AppUrls } from "../Constants";
 @Injectable({
   providedIn: "root"
 })
-export class SettingsService {
+export class ProfiledetailsService {
   constructor(private http: HttpClient, private jwtService: JwtService) {}
-  makeUpdateRequest(body) {
+  makeCurrentUserRequest() {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
         Authorization: "Token" + " " + this.jwtService.getToken()
       })
     };
-    return this.http.put(AppUrls.urlUpdateUser, body, httpOptions);
+    return this.http.get(AppUrls.urlGetUser, httpOptions);
   }
 }

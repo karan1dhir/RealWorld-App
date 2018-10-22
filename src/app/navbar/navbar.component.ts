@@ -24,9 +24,7 @@ export class NavbarComponent implements OnInit {
       this.subscription = this.messageService
         .getData()
         .subscribe((data: Data) => {
-          console.log(data);
           this.username = data.message.username;
-          console.log(this.username);
         });
       return true;
     } else return false;

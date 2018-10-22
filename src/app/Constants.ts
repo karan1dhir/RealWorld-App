@@ -8,5 +8,6 @@ export const AppUrls = {
     urlSignIn:"https://conduit.productionready.io/api/users/login",
     urlGetUser:"https://conduit.productionready.io/api/user",
     urlPostArticle:"https://conduit.productionready.io/api/articles",
-    urlUpdateUser:"https://conduit.productionready.io/api/user"
+    urlUpdateUser:"https://conduit.productionready.io/api/user",
+    urlCurrentUserArticle:"https://conduit.productionready.io/api/articles?author"
 };
