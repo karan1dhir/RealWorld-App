@@ -18,7 +18,8 @@ export class NavbarComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
   checkSignIn() {
     if (this.jwtservice.getToken()) {
       this.subscription = this.messageService

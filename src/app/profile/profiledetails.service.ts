@@ -15,4 +15,7 @@ export class ProfiledetailsService {
     };
     return this.http.get(AppUrls.urlGetUser, httpOptions);
   }
+  makeCurrentUserArticleRequest(name){
+    return this.http.get(AppUrls.urlCurrentUserArticle+name+"&limit=5&offset=0");
+  }
 }

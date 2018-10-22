@@ -9,5 +9,5 @@ export const AppUrls = {
     urlGetUser:"https://conduit.productionready.io/api/user",
     urlPostArticle:"https://conduit.productionready.io/api/articles",
     urlUpdateUser:"https://conduit.productionready.io/api/user",
-    urlCurrentUserArticle:"https://conduit.productionready.io/api/articles?author"
+    urlCurrentUserArticle:"https://conduit.productionready.io/api/articles?author="
 };
