@@ -34,4 +34,12 @@ export class ArticleDetailsService {
     };
     return this.http.delete(AppUrls.urlArticleComments + slug, httpOptions);
   }
+  checkCurrentUserRequest() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: "Token" + " " + this.jwtService.getToken()
+      })
+    };
+    return this.http.get(AppUrls.urlGetUser, httpOptions);
+  }
 }

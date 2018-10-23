@@ -19,9 +19,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getAllFeeds();
     this.getAllTags();
-    if (this.jwtService.getToken()) {
-      this.checkUser();
-    }
   }
   getAllFeeds(): void {
     this.getFeeds.makeFeedsRequest().subscribe(
@@ -62,15 +59,5 @@ export class HomeComponent implements OnInit {
   clickonTag(e) {
     this.itemTag = e.value;
     this.itemFeeds = e.itemFeedsList;
-  }
-  checkUser() {
-    this.getFeeds.checkCurrentUserRequest().subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
 }

@@ -4,6 +4,8 @@
       <h1>Sign Up</h1>
       <h6 style="color:#5CB85C">Have an account</h6>
     </div>
+    <div *ngIf="isValid" class="valid">Username or Password or Email is Incorrect</div>
+    <div *ngIf="isNull" class="null">Username or Email or Password is Empty!</div>
     <div class="form-group">
       <label for="exampleInputUsername">Username</label>
       <input type="text" class="form-control" id="exampleInputUsername" name="username" placeholder="Enter Username"

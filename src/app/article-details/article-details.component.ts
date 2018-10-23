@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleDetailsService } from "./article-details.service";
 import { ArticleDetails } from "../models/articleDetail";
 import { UserComments, UserComment } from "../models/comments";
+import { Users } from "../models/users";
 @Component({
   selector: "app-article-details",
   templateUrl: "./article-details.component.html",
@@ -20,8 +21,10 @@ export class ArticleDetailsComponent implements OnInit {
   username: string;
   date: string;
   img: string;
+  currentUser: string;
   ngOnInit() {
     this.slug = this.activatedRoute.snapshot.params["slug"];
+    this.checkUser();
     this.fetchDetails(this.slug);
     this.fetchComments(this.slug);
   }
@@ -40,6 +43,7 @@ export class ArticleDetailsComponent implements OnInit {
       .fetchCommentonPost(slug)
       .subscribe((data: UserComments) => {
         this.userComments = data.comments;
+
       });
   }
   postComment(textarea) {
@@ -72,4 +76,14 @@ export class ArticleDetailsComponent implements OnInit {
     });
   }
   editArticle() {}
+  checkUser() {
+    this.articleDetailsService.checkCurrentUserRequest().subscribe(
+      (data: Users) => {
+        this.currentUser = data.user.username;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }

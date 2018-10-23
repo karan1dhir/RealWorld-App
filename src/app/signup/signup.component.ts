@@ -12,6 +12,8 @@ import { JwtService } from "../services/jwt.service";
 })
 export class SignupComponent implements OnInit {
   userDetails: UserDetails;
+  isNull: boolean = false;
+  isValid: boolean = false;
   constructor(
     private signupService: SignupService,
     private router: Router,
@@ -31,6 +33,20 @@ export class SignupComponent implements OnInit {
         password: password
       }
     };
+    if (
+      obj.user.email === "" ||
+      obj.user.email === null ||
+      obj.user.password === "" ||
+      obj.user.password === null ||
+      obj.user.email === null ||
+      obj.user.email === ""
+    ) {
+      this.isNull = true;
+      return;
+    }
+    if (obj != null) {
+      this.isNull = false;
+    }
     this.signupService.makeSignUpRequest(obj).subscribe(
       (data: Users) => {
         this.userDetails = data.user;
@@ -39,6 +55,7 @@ export class SignupComponent implements OnInit {
         this.router.navigateByUrl("/");
       },
       error => {
+        this.isValid = true;
         console.log(JSON.stringify(error));
       }
     );

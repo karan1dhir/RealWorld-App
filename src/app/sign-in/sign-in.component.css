@@ -1,0 +1,9 @@
+.valid {
+  color: #EA4335;
+  font-weight: bold;
+}
+
+.null {
+  color: #3F51B5;
+  font-weight: bold;
+}

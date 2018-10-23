@@ -10,11 +10,12 @@
         <small class="date">{{date | date}}</small>
       </div>
       <div class="profile-heading-content">
-        <button type="button" class="btn btn-outline-secondary profile-button" [routerLink]="['/editor',slug]">
+        <button type="button" class="btn btn-outline-secondary profile-button" [routerLink]="['/editor',slug]" *ngIf="username === currentUser">
           <span class="profile-btn">Edit Article</span>
         </button>
         <div style="display:inline">
-          <button type="button" class="btn btn-outline-danger profile-button" style="margin-left:10px;" (click)=deleteArticle(slug)>
+          <button type="button" class="btn btn-outline-danger profile-button" style="margin-left:10px;" *ngIf="username === currentUser"
+            (click)=deleteArticle(slug)>
             <span class="profile-btn"> Delete Article</span>
           </button>
         </div>

@@ -21,4 +21,12 @@ export class ArticleCommentService {
   fetchCommentonPost(slug) {
     return this.http.get(AppUrls.urlArticleComments + slug + "/comments");
   }
+  checkCurrentUserRequest() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: "Token" + " " + this.jwtService.getToken()
+      })
+    };
+    return this.http.get(AppUrls.urlGetUser, httpOptions);
+  }
 }

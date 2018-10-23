@@ -13,6 +13,8 @@ import { MessageService } from "../services/message.service";
 })
 export class SignInComponent implements OnInit {
   userDetails: UserDetails;
+  isValid: boolean = false;
+  isNull: boolean = false;
   constructor(
     private signInService: SigninService,
     private router: Router,
@@ -30,6 +32,18 @@ export class SignInComponent implements OnInit {
         password: password
       }
     };
+    if (
+      obj.user.email === "" ||
+      obj.user.email === null ||
+      obj.user.password === "" ||
+      obj.user.password === null
+    ) {
+      this.isNull = true;
+      return;
+    }
+    if (obj != null) {
+      this.isNull = false;
+    }
     this.signInService.makeSignInRequest(obj).subscribe(
       (data: Users) => {
         console.log(data);
@@ -39,6 +53,7 @@ export class SignInComponent implements OnInit {
         this.router.navigateByUrl("/");
       },
       error => {
+        this.isValid = true;
         console.log(JSON.stringify(error));
       }
     );

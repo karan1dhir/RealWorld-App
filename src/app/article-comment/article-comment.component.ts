@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ArticleCommentService } from "./article-comment.service";
 import { UserComments } from "../models/comments";
+import { Users } from "../models/users";
 
 @Component({
   selector: "app-article-comment",
@@ -14,6 +15,7 @@ export class ArticleCommentComponent implements OnInit {
   @Output()
   updatecomments = new EventEmitter();
   slug: string;
+  currentUser: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,6 +23,7 @@ export class ArticleCommentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.checkUser()
     this.slug = this.activatedRoute.snapshot.params["slug"];
     console.log(this.slug);
   }
@@ -40,6 +43,16 @@ export class ArticleCommentComponent implements OnInit {
       (data: UserComments) => {
         console.log(data);
         this.updatecomments.emit(data.comments);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  checkUser() {
+    this.articleCommentService.checkCurrentUserRequest().subscribe(
+      (data: Users) => {
+        this.currentUser = data.user.username;
       },
       error => {
         console.log(error);
