@@ -13,10 +13,10 @@
     <div class="col-8">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" style="cursor:pointer">Global Feed</a>
+          <a class="nav-link" style="cursor:pointer" (click) = globalFeeds()>Global Feed</a>
         </li>
         <li class="nav-item">
-          <app-tagfeeds [tagItem]=itemTag></app-tagfeeds>
+          <app-tagfeeds [tagItem]=itemTag *ngIf="isDisabled"></app-tagfeeds>
         </li>
       </ul>
       <app-card [cardItems]=itemFeeds></app-card>

@@ -9,6 +9,7 @@ import { JwtService } from "../services/jwt.service";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
+  isDisabled:boolean 
   itemFeeds: Array<Items>;
   itemTags: Array<string>;
   itemPages: Array<number>;
@@ -57,7 +58,12 @@ export class HomeComponent implements OnInit {
     );
   }
   clickonTag(e) {
+    this.isDisabled = true
     this.itemTag = e.value;
     this.itemFeeds = e.itemFeedsList;
+  }
+  globalFeeds(){
+    this.isDisabled = false;
+    this.getAllFeeds()
   }
 }
