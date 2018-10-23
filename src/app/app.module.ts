@@ -17,6 +17,7 @@ import { SettingsComponent } from "./settings/settings.component";
 import { NewarticleComponent } from "./newarticle/newarticle.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ArticleDetailsComponent } from './article-details/article-details.component';
+import { ArticleCommentComponent } from './article-comment/article-comment.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -44,7 +45,8 @@ const routes: Routes = [
     SettingsComponent,
     NewarticleComponent,
     ProfileComponent,
-    ArticleDetailsComponent
+    ArticleDetailsComponent,
+    ArticleCommentComponent
   ],
   imports: [
     BrowserModule,

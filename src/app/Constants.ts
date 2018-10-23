@@ -10,5 +10,6 @@ export const AppUrls = {
     urlPostArticle:"https://conduit.productionready.io/api/articles",
     urlUpdateUser:"https://conduit.productionready.io/api/user",
     urlCurrentUserArticle:"https://conduit.productionready.io/api/articles?author=",
-    urlGetArticleDetails:"https://conduit.productionready.io/api/articles/"
+    urlGetArticleDetails:"https://conduit.productionready.io/api/articles/",
+    urlArticleComments:"https://conduit.productionready.io/api/articles/"
 };

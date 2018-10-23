@@ -1,0 +1,9 @@
+    <div *ngFor = "let value of articleComments">
+    <div class="card" style="margin-top:5px;">
+     <div class="card-body" style="padding:10px;">
+       {{value.body}}
+       <button type="button" class="btn btn-danger" style="float:right" (click)=removeComment(value.id)>Delete</button>
+     </div>
+   </div> 
+  </div>
+ 
