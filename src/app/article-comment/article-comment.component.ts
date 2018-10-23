@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ArticleCommentService } from "./article-comment.service";
+import { UserComments } from "../models/comments";
 
 @Component({
   selector: "app-article-comment",
@@ -10,6 +11,8 @@ import { ArticleCommentService } from "./article-comment.service";
 export class ArticleCommentComponent implements OnInit {
   @Input()
   articleComments;
+  @Output()
+  updatecomments = new EventEmitter();
   slug: string;
 
   constructor(
@@ -34,8 +37,9 @@ export class ArticleCommentComponent implements OnInit {
   }
   fetchComments(slug) {
     this.articleCommentService.fetchCommentonPost(slug).subscribe(
-      data => {
+      (data: UserComments) => {
         console.log(data);
+        this.updatecomments.emit(data.comments);
       },
       error => {
         console.log(error);

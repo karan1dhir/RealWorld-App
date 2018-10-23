@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleDetailsService } from "./article-details.service";
 import { ArticleDetails } from "../models/articleDetail";
 import { UserComments, UserComment } from "../models/comments";
@@ -11,9 +11,10 @@ import { UserComments, UserComment } from "../models/comments";
 export class ArticleDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
-    private articleDetailsService: ArticleDetailsService
+    private articleDetailsService: ArticleDetailsService,
+    private router: Router
   ) {}
-  userComments:Array<UserComment>
+  userComments: Array<UserComment>;
   slug: string;
   description: string;
   username: string;
@@ -22,7 +23,7 @@ export class ArticleDetailsComponent implements OnInit {
   ngOnInit() {
     this.slug = this.activatedRoute.snapshot.params["slug"];
     this.fetchDetails(this.slug);
-    this.fetchComments(this.slug)
+    this.fetchComments(this.slug);
   }
   fetchDetails(slug) {
     this.articleDetailsService
@@ -34,25 +35,41 @@ export class ArticleDetailsComponent implements OnInit {
         this.img = data.article.author.image;
       });
   }
-  fetchComments(slug){
-    this.articleDetailsService.fetchCommentonPost(slug).subscribe((data:UserComments)=>{
-      this.userComments = data.comments
-    })
+  fetchComments(slug) {
+    this.articleDetailsService
+      .fetchCommentonPost(slug)
+      .subscribe((data: UserComments) => {
+        this.userComments = data.comments;
+      });
   }
-  postComment(textarea){
-    console.log(textarea.value)
+  postComment(textarea) {
+    console.log(textarea.value);
     var commentObj = {
       comment: {
         body: textarea.value
       }
-    }
-    textarea.value =' '; 
-    this.articleDetailsService.articlePost(commentObj,this.slug).subscribe((data)=>{
-      console.log(data)
-      this.fetchComments(this.slug)
-    },
-    error=>{
-      console.log(error)
-    })
+    };
+    textarea.value = " ";
+    this.articleDetailsService.articlePost(commentObj, this.slug).subscribe(
+      data => {
+        console.log(data);
+        this.fetchComments(this.slug);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
+  updateAllComments(e) {
+    console.log(e);
+    this.userComments = e;
+  }
+  deleteArticle(slug) {
+    console.log(slug);
+    this.articleDetailsService.removeArticle(slug).subscribe(data => {
+      console.log(data);
+      this.router.navigateByUrl("home");
+    });
+  }
+  editArticle() {}
 }

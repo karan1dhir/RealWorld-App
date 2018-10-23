@@ -10,12 +10,14 @@
         <small class="date">{{date | date}}</small>
       </div>
       <div class="profile-heading-content">
-        <button type="button" class="btn btn-outline-secondary profile-button">
+        <button type="button" class="btn btn-outline-secondary profile-button" [routerLink]="['/editor',slug]">
           <span class="profile-btn">Edit Article</span>
         </button>
-        <button type="button" class="btn btn-outline-danger profile-button" style="margin-left:10px;">
-          <span class="profile-btn"> Delete Article</span>
-        </button>
+        <div style="display:inline">
+          <button type="button" class="btn btn-outline-danger profile-button" style="margin-left:10px;" (click)=deleteArticle(slug)>
+            <span class="profile-btn"> Delete Article</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -25,10 +27,10 @@
 </div>
 <div class="container col-6">
   <div class="form-group" style="margin-top:10px;">
-    <textarea #name class="form-control" rows="4" placeholder="Write a comment" name="comment" ></textarea>
+    <textarea #name class="form-control" rows="4" placeholder="Write a comment" name="comment"></textarea>
     <div class="card-footer">
       <button type="button" class="btn btn-success" (click)=postComment(name)>Post Comments</button>
     </div>
   </div>
-  <app-article-comment [articleComments] = "userComments"></app-article-comment>
+  <app-article-comment [articleComments]="userComments" (updatecomments)=updateAllComments($event)></app-article-comment>
 </div>
