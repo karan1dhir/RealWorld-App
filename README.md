@@ -1,3 +1,7 @@
+The web application is similar to that of a medium. The site is being hosted on surge :).
+
+The hosted site link ---  https://shocking-road.surge.sh/#/home
+
 # Assignment
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
